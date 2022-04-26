@@ -39,6 +39,8 @@ const OverlayElectionModal = () => {
       });
   };
 
+  console.log(modalData);
+
   return (
     modalData && (
       <div
@@ -79,8 +81,13 @@ const OverlayElectionModal = () => {
             </ul>
 
             <div className="modal_butts">
-              <button onClick={startElection}>Start Election</button>
-              <button onClick={endElection}>End Election</button>
+              {!modalData?.is_started ? (
+                <button onClick={startElection}>Start Election</button>
+              ) : !modalData?.is_finished ? (
+                <button onClick={endElection}>End Election</button>
+              ) : (
+                <button>Election Ended</button>
+              )}
             </div>
           </div>
         </div>

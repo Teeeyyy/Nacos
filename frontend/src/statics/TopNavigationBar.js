@@ -107,18 +107,22 @@ const TopNavigationBar = ({ darkTheme }) => {
         ) : (
           <div className="dropDownConnect">
             <div className="dropDownConnect_button">
-              <button className="connect_wallet_button">
+              <button
+                className="connect_wallet_button"
+                //
+                onClick={myAlgoConnect}
+              >
                 <p>
                   Connect Wallet
-                  <i
+                  {/* <i
                     className="uil uil-angle-down"
                     style={{ fontSize: "18px" }}
-                  />
+                  /> */}
                 </p>
               </button>
             </div>
 
-            <div className="dropDownConnect_items">
+            {/* <div className="dropDownConnect_items">
               <div className="dropDownConnect_item" onClick={myAlgoConnect}>
                 <div className="dropDownConnect_img">
                   <img
@@ -141,7 +145,7 @@ const TopNavigationBar = ({ darkTheme }) => {
                     : "AlgoSigner"}
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         )}
         {/*  */}

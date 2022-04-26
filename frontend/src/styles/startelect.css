@@ -79,6 +79,9 @@
   overflow: hidden;
   flex-direction: column;
 }
+.pop_butt {
+  cursor: pointer;
+}
 .elt_det .e_det_main {
   font-size: 16px;
   color: var(--wht);

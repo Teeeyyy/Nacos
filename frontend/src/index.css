@@ -475,6 +475,7 @@ main {
   font-size: 13px;
   font-weight: 600;
   margin-top: 10px;
+  cursor: pointer;
   color: var(--main-col);
   border-radius: 8px;
   align-items: center;
@@ -489,7 +490,7 @@ main {
 .modal_cont {
   width: 420px;
   max-width: 88vw;
-  min-height: 300px;
+  min-height: 200px;
 
   display: flex;
   border-radius: 8px;
@@ -571,9 +572,10 @@ main {
   justify-content: space-between;
 }
 .modal_butts button {
+  width: 100%;
   font-size: 13px;
   color: var(--wht);
   padding: 10px 20px;
   background: #000;
-  border-radius: 8px;
+  border-radius: 6px;
 }
