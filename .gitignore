@@ -156,6 +156,9 @@ cython_debug/
 
 # FRONTEND
 # Logs
+
+frontend/node_modules
+
 logs
 *.log
 npm-debug.log*

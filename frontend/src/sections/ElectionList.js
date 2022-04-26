@@ -70,7 +70,7 @@ const ElectionList = () => {
 
   if (error) return "An error has occurred: " + error.message;
 
-  // console.log(data);
+  console.log(data);
 
   return (
     <div className="ptt_elt">
@@ -98,20 +98,6 @@ const ElectionList = () => {
                 <div className="card_elt_desc">{slug?.card_desc}</div>
 
                 <div className="card_cand">
-                  <div className="card_cand_hd">
-                    <p>Candidates</p>
-
-                    <div className="amountToCommit">
-                      <p>Amount to commit:</p>
-                      <input
-                        type="number"
-                        min="1"
-                        placeholder="1"
-                        className="amtToCommitInp"
-                      />
-                    </div>
-                  </div>
-
                   <ul className="card_cand_list">
                     {slug?.candidates?.map((item, index) => (
                       <li className="cand_item" key={index}>
@@ -141,7 +127,7 @@ const ElectionList = () => {
                   </div>
 
                   <div className="vote_collap">
-                    <div className="card_cand_hd">Options</div>
+                    <div className="card_cand_hd">Tick Option below</div>
                     <ul className="vote_now_list">
                       {slug?.candidates?.map((item, index) => {
                         return (
@@ -173,18 +159,9 @@ const ElectionList = () => {
                             .closest(".card_cand")
                             .find(".vote_now_list");
 
-                          var amountToSend = $(e.target)
-                            .closest(".card_cand")
-                            .find(".amtToCommitInp")
-                            .val();
-
-                          var amt = !!amountToSend
-                            ? amountToSend
-                            : slug.choice_per_vote;
-
                           placeVote(
                             $("input[name=options]:checked", voteVal).val(),
-                            amt,
+                            slug?.algo_per_vote,
                             slug
                           );
                         }}
@@ -195,7 +172,7 @@ const ElectionList = () => {
                   </div>
 
                   <div className="card_butts">
-                    <button
+                    {/* <button
                       onClick={(e) => {
                         $(".uil", e.target).toggleClass("uil-angle-up");
 
@@ -217,7 +194,7 @@ const ElectionList = () => {
                       }}
                     >
                       Vote now <i className="uil uil-angle-down"></i>
-                    </button>
+                    </button> */}
                     <button
                       onClick={(e) => {
                         $(".uil", e.target).toggleClass("uil-angle-up");
