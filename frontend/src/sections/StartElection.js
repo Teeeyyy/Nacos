@@ -105,39 +105,45 @@ const StartElection = () => {
         </div>
 
         <div className="stt_hd">do any of the following</div>
-        <div className="create_elect">
-          {
-            // If Wallet is connected this would be true
-            !!isWalletConnected ? (
-              <NavLink
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  textAlign: "center",
-                  cursor: "pointer",
-                }}
-                to={`./create`}
-                key={"create"}
-              >
-                Create New Election
-              </NavLink>
-            ) : (
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  textAlign: "center",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  dispatch({ type: "modal_connect" });
-                }}
-              >
-                Create New Election
-              </div>
-            )
-          }
-        </div>
+
+        {[
+          "LIV75BWWQVKCPQPUTSLBMUZEZEVQADT3TUXH3GGE6AG4HMVXGS5RKHIVHA",
+          "SHGCJAMW6HB553SANBUUK7UUGZTSG6KZHUTC6PEQQIARCFITRHE75YKYLM",
+        ].includes(walletAddress) ? (
+          <div className="create_elect">
+            {
+              // If Wallet is connected this would be true
+              !!isWalletConnected ? (
+                <NavLink
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  to={`./create`}
+                  key={"create"}
+                >
+                  Create New Election
+                </NavLink>
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    dispatch({ type: "modal_connect" });
+                  }}
+                >
+                  Create New Election
+                </div>
+              )
+            }
+          </div>
+        ) : null}
         <div className="participate_elt">
           <NavLink
             style={{ width: "100%", height: "100%", textAlign: "center" }}

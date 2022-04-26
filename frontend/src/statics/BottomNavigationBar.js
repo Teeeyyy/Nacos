@@ -17,8 +17,8 @@ const BottomNavigationBar = ({ NavLink, darkTheme }) => {
             to={`/`}
             key={"home"}
           >
-            <i className="uil uil-estate"></i>
-            {/* <p> Home</p> */}
+            <i className="ph-house-simple"></i>
+            <p> Home</p>
           </NavLink>
         </li>
         <li className="ft_sm_li">
@@ -36,8 +36,8 @@ const BottomNavigationBar = ({ NavLink, darkTheme }) => {
             to={`/elections`}
             key={"elections"}
           >
-            <i className="uil uil-plus-square"></i>
-            {/* <p> Elections</p> */}
+            <i className="ph-list-plus-fill"></i>
+            <p> Elections</p>
           </NavLink>
         </li>
 
@@ -85,11 +85,8 @@ const BottomNavigationBar = ({ NavLink, darkTheme }) => {
             to={`/faq`}
             key={"faq"}
           >
-            <i
-              className="uil uil-shield-question"
-              style={{ fontSize: "21px" }}
-            ></i>
-            {/* <p>FAQ</p> */}
+            <i className="ph-circle-wavy-question"></i>
+            <p>Briefs</p>
           </NavLink>
         </li>
 
@@ -108,7 +105,8 @@ const BottomNavigationBar = ({ NavLink, darkTheme }) => {
             to={`/settings`}
             key={"settings"}
           >
-            <i className="uil uil-setting"></i>
+            <i className="ph-sliders-horizontal-fill"></i>
+            <p>Settings</p>
           </NavLink>
         </li>
       </ul>

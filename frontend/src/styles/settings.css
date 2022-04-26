@@ -13,8 +13,8 @@
 }
 
 .settings_inn {
-  width: 420px;
-  max-width: 88vw;
+  width: var(--md-width);
+  max-width: var(--max-width);
 }
 .settings_hd {
   display: flex;

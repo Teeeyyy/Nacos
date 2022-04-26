@@ -17,8 +17,8 @@
 }
 
 .stt_elt_inn {
-  width: 420px;
-  max-width: 88vw;
+  width: var(--md-width);
+  max-width: var(--max-width);
 }
 .stt_hd {
   display: flex;

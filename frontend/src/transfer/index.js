@@ -14,16 +14,12 @@ const Index = () => {
 
   // algod Client
   const algodClient = new algosdk.Algodv2(
-    {
-      "X-API-Key": "bbb ",
-    },
+    "",
     "https://node.testnet.algoexplorerapi.io",
     ""
   );
   const indexerClient = new algosdk.Indexer(
-    {
-      "X-API-Key": "bbb ",
-    },
+    "",
     "https://algoindexer.testnet.algoexplorerapi.io",
     ""
   );
@@ -61,8 +57,19 @@ const Index = () => {
     // based on wallet type
     try {
       if (walletType === "my-algo") {
-        const signedTxn = await myAlgoWallet.signTransaction(txn.toByte());
-        await algodClient.sendRawTransaction(signedTxn.blob).do();
+        await myAlgoWallet
+          .signTransaction(txn.toByte())
+          .then((signedTxn) => {
+            algodClient.sendRawTransaction(signedTxn.blob).do();
+          })
+          .then(() => {
+            alert(`${amount} $ALGO sent successfully to ${addr}!`);
+            window.location.reload();
+          })
+          .catch((err) => {
+            alert(err?.message);
+            window.location.reload();
+          });
       } else if (walletType === "algosigner") {
         const signedTxn = await window.AlgoSigner.signTxn([
           { txn: window.AlgoSigner.encoding.msgpackToBase64(txn.toByte()) },
@@ -73,8 +80,6 @@ const Index = () => {
           )
           .do();
       }
-
-      alert(`${amount} $ALGO sent successfully to ${addr}!`);
     } catch (error) {
       console.log(error);
       window.location.reload();
@@ -111,7 +116,7 @@ const Index = () => {
               <input
                 type="number"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(Number(e.target.value))}
               />
 
               <div className="trsf_max">

@@ -285,12 +285,12 @@ const CreateElection = () => {
 
           {/* ************** */}
           <div className="v_inp_cov inpCont_cand">
-            <p className="inp_tit">Candidates</p>
+            <p className="inp_tit">Options</p>
             <div className="add_item_sect">
               <div className="add_item_sect_r1">
                 <input
                   type="text"
-                  placeholder="Choice Coin"
+                  placeholder="Election option"
                   value={itemInp}
                   onChange={(e) => setItemInp(e.target.value)}
                 />

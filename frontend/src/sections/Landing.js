@@ -31,19 +31,23 @@ const Landing = () => {
           textTransform: "uppercase",
         }}
       >
-        Amount committed to Governance: {!isLoading && !error && data.amount}{" "}
+        Total amount committed to voting: {!isLoading && !error && data.amount}{" "}
         $ALGO
       </div>
 
       <div className="land_cov">
         <div className="land_item1">
-          <p className="hdy">NACOS</p>
+          <div className="icon_title">
+            <img src="/img/school_logo.jpeg" alt="" />
+            <p className="hdy">NACOS</p>
+          </div>
+
           <p className="suby">
             NACOS Voting System using Algorand Blockchain
             <br />
             <br />
-            Decentralized Decisions enables organizations to make governance
-            decisions in an open and decentralized manner.
+            Platfrom for Decentralized Decisions to enable students create,
+            explore and participate in elections anonymously.
           </p>
         </div>
       </div>

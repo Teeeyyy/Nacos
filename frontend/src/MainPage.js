@@ -20,15 +20,7 @@ const MainPage = () => {
 
   return (
     <main
-      className={`${
-        darkTheme
-          ? width > 800
-            ? "dark_theme big_screen"
-            : "dark_theme"
-          : width > 800
-          ? "light_theme big_screen"
-          : "light_theme"
-      }`}
+      className={`${darkTheme ? "dark_theme" : "light_theme"}`}
       id="main_main"
     >
       <TopNavigationBar darkTheme={darkTheme} />

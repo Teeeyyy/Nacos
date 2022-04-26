@@ -48,12 +48,16 @@ const Faq = () => {
         ))}
 
         <div className="ask_q_sect">
-          <button className="ask_que">
+          <a
+            href="https://forum.algorand.org/"
+            target="_blank"
+            className="ask_que"
+          >
             <p>
               Ask a question or contribute{" "}
               <i className="uil uil-arrow-up-right"></i>
             </p>
-          </button>
+          </a>
         </div>
       </div>
     </div>

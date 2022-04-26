@@ -4,7 +4,7 @@
   position: relative;
   display: flex;
   color: var(--txt-alt);
-  padding: 15vh 5vw 0vh;
+  padding: 15vh 0vw 0vh;
   flex-direction: column;
   font-family: "Barlow", sans-serif;
 
@@ -13,8 +13,8 @@
   align-items: center;
 }
 .faq_cont_inn {
-  width: 420px;
-  max-width: 88vw;
+  width: var(--md-width);
+  max-width: var(--max-width);
 }
 
 /* 

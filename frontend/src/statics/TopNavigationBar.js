@@ -85,27 +85,10 @@ const TopNavigationBar = ({ darkTheme }) => {
 
   return (
     <header className="small_header">
-      <div
-        className="notResponsiveWarning"
-        style={{ display: width > 800 ? "flex" : "none" }}
-      >
-        <p>
-          {
-            "/////// This site is not responsive yet. Large screen view coming soon."
-          }
-        </p>
-      </div>
-
       <div className="small_header_inn">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textTransform: "uppercase",
-          }}
-        >
-          NACOS VOTING PLATFORM
+        <div className="top_logo">
+          <img src="/img/department_logo.jpeg" alt="" />
+          <p>NACOS VOTING PLATFORM</p>
         </div>
 
         {!!isWalletConnected ? (

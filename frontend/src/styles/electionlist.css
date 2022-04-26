@@ -13,8 +13,8 @@
 }
 
 .ptt_elt_inn {
-  width: 420px;
-  max-width: 88vw;
+  width: var(--md-width);
+  max-width: var(--max-width);
 }
 .ptt_hd {
   display: flex;

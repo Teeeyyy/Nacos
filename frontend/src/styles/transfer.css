@@ -4,7 +4,7 @@
   position: relative;
   display: flex;
   color: var(--txt-alt);
-  padding: 15vh 5vw 0vh;
+  padding: 15vh 0vw 0vh;
   flex-direction: column;
 
   font-weight: 400;
@@ -13,8 +13,8 @@
 }
 
 .transfer_cont_inn {
-  width: 420px;
-  max-width: 88vw;
+  width: var(--md-width);
+  max-width: var(--max-width);
   display: flex;
   height: 100%;
   flex-direction: column;

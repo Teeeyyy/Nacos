@@ -31,7 +31,7 @@ body {
   --white: #eee;
   --wht: #fff;
   --dark-800: #242424;
-  --dark-800: #1a1a1a;
+  --dark-800: #111;
   --txt: #999;
   --txt-alt: #808080;
   --txt-alt-2: #aaa;
@@ -40,6 +40,9 @@ body {
   --sm-nav-height: 70px;
   --main-col: #2958ff;
   --main-col-inv: #ccf381;
+
+  --md-width: 450px;
+  --max-width: 90vw;
 
   /* --main-col: #31b7a3;
   --main-col-inv: #ce485c; */
@@ -251,6 +254,19 @@ main {
 .small_header_inn p {
   opacity: 0.8;
 }
+.small_header_inn .top_logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-transform: uppercase;
+}
+.top_logo img {
+  width: 45px;
+  height: 45px;
+  margin-right: 20px;
+  object-fit: cover;
+  border-radius: 100%;
+}
 
 .light_theme .small_header_inn {
   font-weight: 500;
@@ -284,9 +300,9 @@ main {
   color: var(--wht);
   height: 100%;
   display: flex;
-  width: 90vw;
+  width: 450px;
+  max-width: 90vw;
   flex-direction: row;
-  max-width: 350px;
   margin: auto;
   align-items: center;
   justify-content: space-between;
