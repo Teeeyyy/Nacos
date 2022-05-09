@@ -10,18 +10,25 @@ const status = (
   action
 ) => {
   switch (action.type) {
+    //Theme Mode
     case "light_mode":
       return { ...state, darkTheme: false };
     case "dark_mode":
       return { ...state, darkTheme: true };
 
+    //Menu Modal
     case "modal_menu":
       return { ...state, modalMenu: { openModal: true, modalType: "menu" } };
+    //Connect Wallet Modal
     case "modal_connect":
       return {
         ...state,
         modalMenu: { openModal: true, modalType: "connectWallet" },
       };
+    case "close_modal":
+      return { ...state, modalMenu: { openModal: false, modalType: "menu" } };
+
+    //Vote Modal
 
     case "modal_connect_vote":
       return {
@@ -31,8 +38,7 @@ const status = (
     case "close_vote_modal":
       return { ...state, voteModal: { openModalVote: false, voteData: null } };
 
-    case "close_modal":
-      return { ...state, modalMenu: { openModal: false, modalType: "menu" } };
+    //Pop Up Election Modal
 
     case "popupElection":
       return {

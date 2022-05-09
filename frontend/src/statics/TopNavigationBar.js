@@ -1,42 +1,31 @@
 import { useEffect, useState } from "react";
-import algosdk from "algosdk";
 import MyAlgoConnect from "@randlabs/myalgo-connect";
-import { useWindowSize } from "@react-hook/window-size";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-const TopNavigationBar = ({ darkTheme }) => {
-  const [width] = useWindowSize();
-  const [balance, setBalance] = useState(0);
+import { indexerClient, myAlgoConnect } from "../utils";
 
-  const indexerClient = new algosdk.Indexer(
-    {
-      "X-API-Key": "bbb ",
-    },
-    "https://algoindexer.testnet.algoexplorerapi.io",
-    ""
-  );
+const TopNavigationBar = () => {
+  const [balance, setBalance] = useState(0);
 
   const walletAddress = localStorage.getItem("address");
 
+  const setMyBalance = async () => {
+    const myAccountInfo = await indexerClient
+      .lookupAccountByID(walletAddress)
+      .do();
+
+    const b = myAccountInfo.account.amount / 1000000;
+    setBalance(b);
+  };
+
   useEffect(() => {
-    const setMyBalance = async () => {
-      const myAccountInfo = await indexerClient
-        .lookupAccountByID(walletAddress)
-        .do();
-
-      const b = myAccountInfo.account.amount / 1000000;
-      setBalance(b);
-    };
-
     setMyBalance();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const myAlgoConnect = async () => {
-    const myAlgoWallet = new MyAlgoConnect();
-
     try {
-      const accounts = await myAlgoWallet.connect({
+      const accounts = await myAlgoConnect.connect({
         shouldSelectOneAccount: true,
       });
       const address = accounts[0].address;
@@ -94,7 +83,10 @@ const TopNavigationBar = ({ darkTheme }) => {
         {!!isWalletConnected ? (
           <div className="addrDisplay">
             <div className="addrDisplayInn">
-              <div className="addrBalance">{balance} $ALGO</div>
+              <div className="addrBalance">
+                <span className="reloadBalance" onClick={setMyBalance}></span>
+                {balance} $ALGO
+              </div>
 
               <CopyToClipboard text={walletAddress}>
                 <div className="addressTxt">

@@ -1,7 +1,8 @@
 import "../styles/transfer.css";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import algosdk from "algosdk";
+import algosdk, { waitForConfirmation } from "algosdk";
+import $ from "jquery";
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 
 const Index = () => {
@@ -60,15 +61,20 @@ const Index = () => {
         await myAlgoWallet
           .signTransaction(txn.toByte())
           .then((signedTxn) => {
-            algodClient.sendRawTransaction(signedTxn.blob).do();
+            algodClient
+              .sendRawTransaction(signedTxn.blob)
+              .do()
+              .then(async (submittedTxn) => {
+                alert(`${amount} $ALGO sent successfully to ${addr}!`);
+
+                await waitForConfirmation(algodClient, submittedTxn.txId, 1000);
+
+                $(".reloadBalance").click();
+              });
           })
-          .then(() => {
-            alert(`${amount} $ALGO sent successfully to ${addr}!`);
-            window.location.reload();
-          })
+
           .catch((err) => {
             alert(err?.message);
-            window.location.reload();
           });
       } else if (walletType === "algosigner") {
         const signedTxn = await window.AlgoSigner.signTxn([

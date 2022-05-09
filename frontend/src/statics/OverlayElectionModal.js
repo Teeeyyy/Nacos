@@ -39,8 +39,6 @@ const OverlayElectionModal = () => {
       });
   };
 
-  console.log(modalData);
-
   return (
     modalData && (
       <div
@@ -56,8 +54,6 @@ const OverlayElectionModal = () => {
           </div>
 
           <div className="modal_elt_desc">{modalData.description}</div>
-
-          {/*  */}
 
           <div className="modal_cand">
             <div className="modal_cand_hd">Candidates</div>

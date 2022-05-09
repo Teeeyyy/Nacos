@@ -27,9 +27,11 @@ body {
   --list-border: 1px solid rgba(255, 255, 255, 8%);
 
   --back-1: #363636;
+  --back-2: #515151;
+  --back-3: #666;
 
   --white: #eee;
-  --wht: #fff;
+  --wht: #ddd;
   --dark-800: #242424;
   --dark-800: #111;
   --txt: #999;
@@ -63,6 +65,9 @@ main {
   --wht: #222;
 
   --back-1: #e3e3e3;
+  --back-2: #999;
+  --back-3: #999;
+
   --l1: #333;
 
   --list-border: 1px solid rgba(0, 0, 0, 18%);
@@ -544,13 +549,7 @@ main {
   flex-wrap: wrap;
   flex-direction: row;
 }
-.cand_item {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-right: 15px;
-  margin-bottom: 10px;
-}
+
 .cand_img_cont img {
   width: 20px;
   height: 20px;
