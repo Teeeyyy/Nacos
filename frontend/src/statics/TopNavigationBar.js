@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import MyAlgoConnect from "@randlabs/myalgo-connect";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-
 import { indexerClient, myAlgoConnect } from "../utils";
 
 const TopNavigationBar = () => {
@@ -19,11 +17,13 @@ const TopNavigationBar = () => {
   };
 
   useEffect(() => {
-    setMyBalance();
+    if (!!walletAddress) {
+      setMyBalance();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const myAlgoConnect = async () => {
+  const AlgoConnect = async () => {
     try {
       const accounts = await myAlgoConnect.connect({
         shouldSelectOneAccount: true,
@@ -102,7 +102,7 @@ const TopNavigationBar = () => {
               <button
                 className="connect_wallet_button"
                 //
-                onClick={myAlgoConnect}
+                onClick={AlgoConnect}
               >
                 <p>
                   Connect Wallet

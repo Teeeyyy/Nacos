@@ -10,11 +10,18 @@ const Landing = () => {
 
   const walletAddress = localStorage.getItem("address");
 
-  const { isLoading, error, data } = useQuery("committed", () =>
-    axios
-      .get(`${URL}/committed/${walletAddress}`)
-      .then((response) => response.data.data)
+  const { isLoading, error, data } = useQuery(
+    "committed",
+    () =>
+      axios
+        .get(`${URL}/committed/${walletAddress}`)
+        .then((response) => response.data.data),
+    {
+      enabled: !!walletAddress,
+    }
   );
+
+  console.log(data);
 
   return (
     <div className="landing" id="landing">
@@ -31,8 +38,8 @@ const Landing = () => {
           textTransform: "uppercase",
         }}
       >
-        Total amount committed to voting: {!isLoading && !error && data.amount}{" "}
-        $ALGO
+        Total amount committed to voting:{" "}
+        {!isLoading && !error && data?.amount / 10000} $ALGO
       </div>
 
       <div className="land_cov">
