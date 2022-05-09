@@ -21,8 +21,6 @@ const Landing = () => {
     }
   );
 
-  console.log(data);
-
   return (
     <div className="landing" id="landing">
       <ScrollTextLand
