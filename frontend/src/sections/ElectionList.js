@@ -12,7 +12,7 @@ import algosdk, { waitForConfirmation } from "algosdk";
 import { useSelector, useDispatch } from "react-redux";
 
 import { indexerClient, algodClient, myAlgoConnect } from "../utils";
-import { MatricNumbers } from "../MatricNums";
+import { MatricNumbs } from "../MatricNums";
 
 const ElectionList = () => {
   const [matricNum, setMatricNum] = useState(8888);
@@ -23,7 +23,7 @@ const ElectionList = () => {
     "elections",
     () => axios.get(`${URL}/elections`).then((response) => response.data.data),
     {
-      refetchInterval: 0,
+      refetchInterval: 5000,
     }
   );
 
@@ -72,12 +72,23 @@ const ElectionList = () => {
   };
 
   const placeVote = (address, amount, election) => {
-    var contains = MatricNumbers.some(
-      (elem) => matricNum.toString() === elem.toString()
+    var contains = MatricNumbs.some(
+      (elem) => matricNum.toString() === elem?.matricNo?.toString()
+    );
+
+    var containsAddress = MatricNumbs.some(
+      (elem) =>
+        matricNum.toString() === elem?.matricNo?.toString() &&
+        walletAddress === elem?.matricAddress
     );
 
     if (!contains) {
       alert("Provide a valid Matric number");
+      return;
+    }
+
+    if (!containsAddress) {
+      alert("Matric number does not match connected wallet address");
       return;
     }
 
