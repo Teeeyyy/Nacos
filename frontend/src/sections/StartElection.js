@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { ElectionCreators } from "../MatricNums";
 
 const StartElection = () => {
   // wallet-type & address
@@ -106,10 +107,7 @@ const StartElection = () => {
 
         <div className="stt_hd">do any of the following</div>
 
-        {[
-          "LIV75BWWQVKCPQPUTSLBMUZEZEVQADT3TUXH3GGE6AG4HMVXGS5RKHIVHA",
-          "SHGCJAMW6HB553SANBUUK7UUGZTSG6KZHUTC6PEQQIARCFITRHE75YKYLM",
-        ].includes(walletAddress) ? (
+        {ElectionCreators?.includes(walletAddress) ? (
           <div className="create_elect">
             {
               // If Wallet is connected this would be true

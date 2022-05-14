@@ -5,6 +5,7 @@ import axios from "axios";
 import algosdk from "algosdk";
 import "../styles/createelection.css";
 import { URL } from "../constants";
+import { ElectionCreators } from "../MatricNums";
 const CreateElection = () => {
   // algod Client
   const algodClient = new algosdk.Algodv2(
@@ -214,154 +215,157 @@ const CreateElection = () => {
     <div className="create_elt">
       <div className="create_elt_inn">
         <div className="crt_hd">
-          <p>Recently Created Elections</p>
+          {ElectionCreators?.includes(walletAddress) ? (
+            <p>Recently Created Elections</p>
+          ) : (
+            <p>You are not permitted to create Elections</p>
+          )}
         </div>
 
-        {/* **************** */}
-        <div className="vote_sect">
-          <div className="vote_sect_img">
-            <div className="vote_hd_img">
-              {hdImg ? (
-                <img src={hdImg} alt="" />
-              ) : (
-                <i className="uil uil-image" />
-              )}
-            </div>
-
-            <input
-              ref={hdImgPicker}
-              hidden
-              onChange={addHeaderImage}
-              type="file"
-              accept=".jpg, .jpeg, .png"
-            />
-
-            <div
-              className="vote_add_img"
-              onClick={() => hdImgPicker.current.click()}
-            >
-              <p>Add Election Header Image</p>
-            </div>
-          </div>
-
-          <div className="v_inp_cov inpCont_cand">
-            <p className="inp_tit">Election Title</p>
-            <input
-              type="text"
-              placeholder="eg. Best cryptocurrency"
-              value={processTit}
-              onChange={(e) => setProcessTit(e.target.value)}
-            />
-            <p className="ensure_txt">
-              Entries must be of minimum length of one.
-            </p>
-          </div>
-
-          <div className="v_inp_cov inpCont_cand">
-            <p className="inp_tit">Election Description</p>
-            <input
-              type="text"
-              placeholder="Describe process"
-              value={electionDescription}
-              onChange={(e) => setElectionDesciption(e.target.value)}
-            />
-            <p className="ensure_txt">
-              A meaningful text to describe your election process.
-            </p>
-          </div>
-
-          <div className="v_inp_cov inpCont_cand">
-            <p className="inp_tit">$ALGO per vote</p>
-            <input
-              type="number"
-              value={algoToSend}
-              min="1"
-              onChange={(e) => setalgoToSend(e.target.value)}
-            />
-            <p className="ensure_txt">
-              Amount of $ALGO required to participate in this election
-            </p>
-          </div>
-
-          {/* ************** */}
-          <div className="v_inp_cov inpCont_cand">
-            <p className="inp_tit">Options</p>
-            <div className="add_item_sect">
-              <div className="add_item_sect_r1">
-                <input
-                  type="text"
-                  placeholder="Election option"
-                  value={itemInp}
-                  onChange={(e) => setItemInp(e.target.value)}
-                />
-
-                <div className="item_img_preview">
-                  {itemImg ? (
-                    <img src={itemImg} alt="" />
-                  ) : (
-                    <i className="uil uil-image" />
-                  )}
-                </div>
-
-                <input
-                  ref={itemImgPicker}
-                  hidden
-                  onChange={addItemImg}
-                  type="file"
-                  accept=".jpg, .jpeg, .png"
-                />
-
-                <div
-                  className="add_butt"
-                  onClick={() => itemImgPicker.current.click()}
-                >
-                  <p>Add Image</p>
-                </div>
+        {ElectionCreators?.includes(walletAddress) ? (
+          <div className="vote_sect">
+            <div className="vote_sect_img">
+              <div className="vote_hd_img">
+                {hdImg ? (
+                  <img src={hdImg} alt="" />
+                ) : (
+                  <i className="uil uil-image" />
+                )}
               </div>
+
+              <input
+                ref={hdImgPicker}
+                hidden
+                onChange={addHeaderImage}
+                type="file"
+                accept=".jpg, .jpeg, .png"
+              />
+
+              <div
+                className="vote_add_img"
+                onClick={() => hdImgPicker.current.click()}
+              >
+                <p>Add Election Header Image</p>
+              </div>
+            </div>
+
+            <div className="v_inp_cov inpCont_cand">
+              <p className="inp_tit">Election Title</p>
+              <input
+                type="text"
+                placeholder="eg. Best cryptocurrency"
+                value={processTit}
+                onChange={(e) => setProcessTit(e.target.value)}
+              />
               <p className="ensure_txt">
                 Entries must be of minimum length of one.
               </p>
             </div>
 
-            <div className="addItemButt" onClick={() => addItem()}>
-              <p>Add Election Participant</p>
+            <div className="v_inp_cov inpCont_cand">
+              <p className="inp_tit">Election Description</p>
+              <input
+                type="text"
+                placeholder="Describe process"
+                value={electionDescription}
+                onChange={(e) => setElectionDesciption(e.target.value)}
+              />
+              <p className="ensure_txt">
+                A meaningful text to describe your election process.
+              </p>
             </div>
-          </div>
 
-          {items?.map((item, index) => (
-            <div className="item_list" key={index}>
-              <div className="item_list_img">
-                {item?.image ? (
-                  <img src={item?.image} alt="" />
-                ) : (
-                  <i className="uil uil-asterisk" />
-                )}
+            <div className="v_inp_cov inpCont_cand">
+              <p className="inp_tit">$ALGO per vote</p>
+              <input
+                type="number"
+                value={algoToSend}
+                min="1"
+                onChange={(e) => setalgoToSend(e.target.value)}
+              />
+              <p className="ensure_txt">
+                Amount of $ALGO required to participate in this election
+              </p>
+            </div>
+
+            {/* ************** */}
+            <div className="v_inp_cov inpCont_cand">
+              <p className="inp_tit">Options</p>
+              <div className="add_item_sect">
+                <div className="add_item_sect_r1">
+                  <input
+                    type="text"
+                    placeholder="Election option"
+                    value={itemInp}
+                    onChange={(e) => setItemInp(e.target.value)}
+                  />
+
+                  <div className="item_img_preview">
+                    {itemImg ? (
+                      <img src={itemImg} alt="" />
+                    ) : (
+                      <i className="uil uil-image" />
+                    )}
+                  </div>
+
+                  <input
+                    ref={itemImgPicker}
+                    hidden
+                    onChange={addItemImg}
+                    type="file"
+                    accept=".jpg, .jpeg, .png"
+                  />
+
+                  <div
+                    className="add_butt"
+                    onClick={() => itemImgPicker.current.click()}
+                  >
+                    <p>Add Image</p>
+                  </div>
+                </div>
+                <p className="ensure_txt">
+                  Entries must be of minimum length of one.
+                </p>
               </div>
 
-              <div className="item_list_name">
-                <p>{item.name}</p>
-              </div>
-
-              <div className="rm_butt" onClick={() => removeItem(item)}>
-                <p>Delete Participant</p>
+              <div className="addItemButt" onClick={() => addItem()}>
+                <p>Add Election Participant</p>
               </div>
             </div>
-          ))}
 
-          <br />
+            {items?.map((item, index) => (
+              <div className="item_list" key={index}>
+                <div className="item_list_img">
+                  {item?.image ? (
+                    <img src={item?.image} alt="" />
+                  ) : (
+                    <i className="uil uil-asterisk" />
+                  )}
+                </div>
 
-          <div className="crt_butt">
-            <button onClick={createElection}>Create Election</button>
-            <p className="safety">
-              <span>Safety disclaimer :</span> We never store your data.
-              Everything is encrypted.
-            </p>
+                <div className="item_list_name">
+                  <p>{item.name}</p>
+                </div>
+
+                <div className="rm_butt" onClick={() => removeItem(item)}>
+                  <p>Delete Participant</p>
+                </div>
+              </div>
+            ))}
+
+            <br />
+
+            <div className="crt_butt">
+              <button onClick={createElection}>Create Election</button>
+              <p className="safety">
+                <span>Safety disclaimer :</span> We never store your data.
+                Everything is encrypted.
+              </p>
+            </div>
+
+            {/* ************** */}
           </div>
-
-          {/* ************** */}
-        </div>
-
-        {/* **************** */}
+        ) : null}
       </div>
     </div>
   );

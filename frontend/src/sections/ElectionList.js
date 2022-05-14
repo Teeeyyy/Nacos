@@ -7,10 +7,7 @@ import { URL } from "../constants";
 import { useState } from "react";
 
 import BarLoader from "react-spinners/BarLoader";
-import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk, { waitForConfirmation } from "algosdk";
-import { useSelector, useDispatch } from "react-redux";
-
 import { indexerClient, algodClient, myAlgoConnect } from "../utils";
 import { MatricNumbs } from "../MatricNums";
 
@@ -23,10 +20,9 @@ const ElectionList = () => {
     "elections",
     () => axios.get(`${URL}/elections`).then((response) => response.data.data),
     {
-      refetchInterval: 5000,
+      refetchInterval: 60000,
     }
   );
-
   // Register vote functions
 
   const AlgoConnect = async (voteData) => {
@@ -61,6 +57,13 @@ const ElectionList = () => {
           // alert success
           alert("You vote has been successfully registered!");
 
+          axios
+            .post(`${URL}/elections/${voteData?.election?.slug}/voters`, {
+              address: walletAddress,
+              matric_no: matricNum.toString(),
+            })
+            .then((response) => console.log(response?.data));
+
           await waitForConfirmation(algodClient, submittedTxn.txId, 1000);
 
           $(".reloadBalance").click();
@@ -72,7 +75,7 @@ const ElectionList = () => {
   };
 
   const placeVote = (address, amount, election) => {
-    var contains = MatricNumbs.some(
+    var containsMatric = MatricNumbs.some(
       (elem) => matricNum.toString() === elem?.matricNo?.toString()
     );
 
@@ -82,7 +85,15 @@ const ElectionList = () => {
         walletAddress === elem?.matricAddress
     );
 
-    if (!contains) {
+    var votedMatric = election?.voters?.some(
+      (elem) => matricNum.toString() === elem?.matric_no?.toString()
+    );
+
+    var votedAddress = election?.voters?.some(
+      (elem) => walletAddress === elem?.address
+    );
+
+    if (!containsMatric) {
       alert("Provide a valid Matric number");
       return;
     }
@@ -94,6 +105,11 @@ const ElectionList = () => {
 
     if (!walletAddress) {
       alert("Connect your wallet to vote!");
+      return;
+    }
+
+    if (!!(votedMatric || votedAddress)) {
+      alert("The Matric number attached to this address has voted already");
       return;
     }
 
@@ -252,10 +268,6 @@ const ElectionList = () => {
                     <button
                       className="record_vote"
                       onClick={(e) => {
-                        var voteVal = $(e.target)
-                          .closest(".card_cand")
-                          .find(".vote_now_list");
-
                         placeVote(selectedAddr, slug?.algo_per_vote, slug);
                       }}
                     >
